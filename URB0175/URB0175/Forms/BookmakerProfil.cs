@@ -31,7 +31,7 @@ namespace URB0175.Forms
 
 
         private void BindData() {
-            Bookmaker b = BookmakerGateway.Select2(2);
+            Bookmaker b = BookmakerGateway.Select2(Autorization.Instance.getId());
             Collection<Bookmaker> z = new Collection<Bookmaker>();
             z.Add(b);
             BindingList<Bookmaker> bindingList = new BindingList<Bookmaker>(z);
@@ -45,7 +45,7 @@ namespace URB0175.Forms
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -55,11 +55,11 @@ namespace URB0175.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GetSelectedBookmaker();
-            /*
+           
+            
             EditProfile ep = new EditProfile();
             ep.Show();
-            */
+            
         }
 
 

@@ -29,9 +29,14 @@ namespace URB0175.Forms
         private void button1_Click(object sender, EventArgs e)
 
         {
-            
-               
-           
+            Bookmaker b = Autorization.Instance.GetCurrentBookmaker();
+            b.meno = textBox1.Text;
+            b.priezvisko = textBox2.Text;
+            b.email = textBox3.Text;
+
+            BookmakerGateway.Update(b);
+
+
         }
 
 

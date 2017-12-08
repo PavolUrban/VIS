@@ -185,6 +185,7 @@ namespace Connective.TablesGateway
             command.Parameters.AddWithValue("@email", bookmaker.email);
             command.Parameters.AddWithValue("@nastup", bookmaker.datum_nastupu_do_prace);
             command.Parameters.AddWithValue("@pohlavie", bookmaker.pohlavie);
+            command.Parameters.AddWithValue("@heslo", bookmaker.heslo);
         }
 
 
