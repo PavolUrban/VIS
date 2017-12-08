@@ -1,0 +1,6 @@
+C:\Skola\VIS\PROJEKT\URB0175\Connective\bin\Debug\Connective.exe.config
+C:\Skola\VIS\PROJEKT\URB0175\Connective\bin\Debug\Connective.exe
+C:\Skola\VIS\PROJEKT\URB0175\Connective\bin\Debug\Connective.pdb
+C:\Skola\VIS\PROJEKT\URB0175\Connective\obj\Debug\Connective.csprojResolveAssemblyReference.cache
+C:\Skola\VIS\PROJEKT\URB0175\Connective\obj\Debug\Connective.exe
+C:\Skola\VIS\PROJEKT\URB0175\Connective\obj\Debug\Connective.pdb

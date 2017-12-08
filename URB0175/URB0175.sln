@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URB0175", "URB0175\URB0175.csproj", "{FA3081F1-BA5E-4161-AD3C-6E90BD14F8B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connective", "Connective\Connective.csproj", "{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA3081F1-BA5E-4161-AD3C-6E90BD14F8B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3081F1-BA5E-4161-AD3C-6E90BD14F8B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3081F1-BA5E-4161-AD3C-6E90BD14F8B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3081F1-BA5E-4161-AD3C-6E90BD14F8B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

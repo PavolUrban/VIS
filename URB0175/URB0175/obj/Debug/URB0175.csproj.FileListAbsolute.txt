@@ -1,0 +1,14 @@
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\bin\Debug\URB0175.exe.config
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\bin\Debug\URB0175.exe
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\bin\Debug\URB0175.pdb
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\bin\Debug\Connective.exe
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\bin\Debug\Connective.pdb
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.csprojResolveAssemblyReference.cache
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Form1.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.Login.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Properties.Resources.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.csproj.GenerateResource.Cache
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.exe
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.pdb
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.BookmakerProfil.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.EditProfile.resources
