@@ -32,5 +32,17 @@ namespace URB0175
             BookmakerProfil b = new BookmakerProfil();
             b.Show();
         }
+
+        private void pridaťZápasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddMatch a = new AddMatch();
+            a.Show();
+        }
+
+        private void mojeZápasyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BookmakerMatches bm = new BookmakerMatches();
+            bm.Show();
+        }
     }
 }

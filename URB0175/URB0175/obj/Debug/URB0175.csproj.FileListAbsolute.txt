@@ -12,3 +12,5 @@ C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.exe
 C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.pdb
 C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.BookmakerProfil.resources
 C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.EditProfile.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.AddMatch.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.BookmakerMatches.resources

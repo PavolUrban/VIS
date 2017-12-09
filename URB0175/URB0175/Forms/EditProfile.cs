@@ -1,4 +1,5 @@
-﻿using Connective.Tables;
+﻿using Connective;
+using Connective.Tables;
 using Connective.TablesGateway;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace URB0175.Forms
 {
     public partial class EditProfile : Form
     {
+        ErrorProvider errorProvider = new ErrorProvider();
+        Bookmaker b = Autorization.Instance.GetCurrentBookmaker();
 
-       
         public EditProfile()
         {
             InitializeComponent();
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -29,12 +32,18 @@ namespace URB0175.Forms
         private void button1_Click(object sender, EventArgs e)
 
         {
-            Bookmaker b = Autorization.Instance.GetCurrentBookmaker();
-            b.meno = textBox1.Text;
-            b.priezvisko = textBox2.Text;
-            b.email = textBox3.Text;
+            if (GetData())
+            {
+                BookmakerGateway.Update(b);
+                MessageBox.Show("Profil upravený!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+            }
 
-            BookmakerGateway.Update(b);
+            else
+            {
+                MessageBox.Show("Profil sa nepodarilo upraviť!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
 
 
         }
@@ -43,7 +52,61 @@ namespace URB0175.Forms
 
 
 
-        
+        private bool GetData()
+        {
+            bool ret = true;
+           
+            errorProvider.Clear();
+
+            
+
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                errorProvider.SetError(textBox1, "Nevyplnene pole meno.");
+                ret = false;
+            }
+            else
+            {
+                b.meno = textBox1.Text;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                errorProvider.SetError(textBox2, "Nevyplnene priezvisko.");
+                ret = false;
+            }
+            else
+            {
+                b.priezvisko = textBox2.Text;
+            }
+
+
+
+            if (Functions.IsValidEmail(textBox3.Text))
+            {
+                b.email = textBox3.Text;
+            }
+
+            else
+            {
+                ret = false;
+                MessageBox.Show("You entered invalid mail address!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+
+
+
+            return ret;
+        }
+
+
+
+
+
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -53,6 +116,11 @@ namespace URB0175.Forms
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

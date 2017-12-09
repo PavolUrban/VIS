@@ -34,8 +34,8 @@ namespace Connective.TablesGateway
         public String SQL_INSERT = "INSERT INTO \"Zapasy\" VALUES (@domaci, @hostujuci,@kurzD, @kurzR, @kurzH, @sport, @bookmaker,@vysledok)";
         public String SQL_DELETE_ID = "DELETE FROM \"Zapasy\" WHERE id_zapasu=@id";
         public String SQL_UPDATE = "UPDATE \"Zapasy\" SET domaci_tim=@domaci, hostujuci_tim=@hostujuci, kurz_domaci = @kurzD, kurz_remiza=@kurzR, kurz_hostia=@kurzH, id_sportu=@sport, id_bookmakera=@bookmaker, vysledok=@vysledok WHERE id_zapasu=@id";
-
-
+        public String SQL_BOOKMAKERS_MATCHES = "select domaci_tim, hostujuci_tim,kurz_domaci,kurz_remiza,kurz_hostia from zapasy where id_bookmakera =@id_bookmakera";
+        public String SQL_UNFINISHEDM = "select count(*) from zapasy where id_bookmakera =@id_bookmakera and vysledok IS NULL";
 
         public String SQL_SELECT_MOJ1 = "SELECT z2.id_zapasu, z2.domaci_tim, z2.hostujuci_tim, z2.kurz_domaci, tabulka.priemKurzDomaci " +
                                               "FROM(SELECT avg(z1.kurz_domaci) as priemKurzDomaci FROM Zapasy z1) AS tabulka, Zapasy z2 " +
@@ -133,6 +133,20 @@ namespace Connective.TablesGateway
 
 
 
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
         public Collection<PomocnyObjekt2> MojVypisZapasov2(string nazovSportu, Database pDb = null)
         {
             Database db;
@@ -191,6 +205,47 @@ namespace Connective.TablesGateway
 
             return zapasy;
         }
+
+
+
+
+
+        public Collection<PomocnyObjekt4> SelectBookmakersMatches(int idBookmakera)
+        {
+            Database db = new Database();
+            db.Connect();
+            SqlCommand command = db.CreateCommand(SQL_BOOKMAKERS_MATCHES);
+            command.Parameters.AddWithValue("@id_bookmakera", idBookmakera);
+
+            SqlDataReader reader = db.Select(command);
+
+            Collection<PomocnyObjekt4> clients = ReadExtended(reader);
+
+            db.Close();
+            return clients;
+        }
+
+
+
+        public int UnfinishedBookmakersMatches(int idBookmakera)
+        {
+            Database db = new Database();
+            db.Connect();
+            SqlCommand command = db.CreateCommand(SQL_UNFINISHEDM);
+            command.Parameters.AddWithValue("@id_bookmakera", idBookmakera);
+
+            SqlDataReader reader = db.Select(command);
+            int number = 0;
+
+            number = NumberOfUnfinishedRead(reader);
+
+            db.Close();
+            return number;
+        }
+
+
+        
+
 
 
 
@@ -376,6 +431,56 @@ namespace Connective.TablesGateway
             }
             return pos;
         }
+
+
+
+        private Collection<PomocnyObjekt4> ReadExtended(SqlDataReader reader)
+        {
+            Collection<PomocnyObjekt4> clients = new Collection<PomocnyObjekt4>();
+
+            while (reader.Read())
+            {
+                PomocnyObjekt4 client = new PomocnyObjekt4();
+                int i = -1;
+                client.domaciTim = reader.GetString(++i);
+                client.hostujuciTim = reader.GetString(++i);
+                client.kurzDomaci = reader.GetDouble(++i);
+                if (!reader.IsDBNull(++i))
+                {
+                    client.kurzRemiza = reader.GetDouble(i);
+                }
+                client.kurzHostia = reader.GetDouble(++i);
+
+
+                clients.Add(client);
+            }
+            return clients;
+        }
+
+
+
+
+        private int NumberOfUnfinishedRead(SqlDataReader reader)
+        {
+            int result = 0;
+
+            while (reader.Read())
+            {
+                
+                int i = -1;
+                result = reader.GetInt32(++i);
+               
+            }
+            return result;
+        }
+
+
+
+        
+
+
+
+
     }
 }
 
@@ -410,4 +515,21 @@ public class PomocnyObjekt3
     public double vklad { get; set; }
     public double? celkovaVyhra { get; set; }
     public bool? uspesnostTiketu { get; set; }
+}
+
+
+public class PomocnyObjekt4
+{
+    public string domaciTim { get; set; }
+    public string hostujuciTim { get; set; }
+    public double kurzDomaci { get; set; }
+    public double? kurzRemiza { get; set; } //doplnil som otaznik
+    public double kurzHostia { get; set; }
+}
+
+
+public class PomocnyObjekt5
+{
+    
+    public int count { get; set; }
 }

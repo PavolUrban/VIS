@@ -31,6 +31,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.zapasyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mojProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pridaťZápasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vyhodnotiťZápasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mojeZápasyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,9 +50,13 @@
             // 
             // zapasyToolStripMenuItem
             // 
+            this.zapasyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pridaťZápasToolStripMenuItem,
+            this.vyhodnotiťZápasToolStripMenuItem,
+            this.mojeZápasyToolStripMenuItem});
             this.zapasyToolStripMenuItem.Name = "zapasyToolStripMenuItem";
             this.zapasyToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.zapasyToolStripMenuItem.Text = "Zapasy";
+            this.zapasyToolStripMenuItem.Text = "Zápasy";
             this.zapasyToolStripMenuItem.Click += new System.EventHandler(this.zapasyToolStripMenuItem_Click);
             // 
             // mojProfilToolStripMenuItem
@@ -58,6 +65,26 @@
             this.mojProfilToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.mojProfilToolStripMenuItem.Text = "Moj profil";
             this.mojProfilToolStripMenuItem.Click += new System.EventHandler(this.mojProfilToolStripMenuItem_Click);
+            // 
+            // pridaťZápasToolStripMenuItem
+            // 
+            this.pridaťZápasToolStripMenuItem.Name = "pridaťZápasToolStripMenuItem";
+            this.pridaťZápasToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.pridaťZápasToolStripMenuItem.Text = "Pridať zápas";
+            this.pridaťZápasToolStripMenuItem.Click += new System.EventHandler(this.pridaťZápasToolStripMenuItem_Click);
+            // 
+            // vyhodnotiťZápasToolStripMenuItem
+            // 
+            this.vyhodnotiťZápasToolStripMenuItem.Name = "vyhodnotiťZápasToolStripMenuItem";
+            this.vyhodnotiťZápasToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.vyhodnotiťZápasToolStripMenuItem.Text = "Vyhodnotiť zápas";
+            // 
+            // mojeZápasyToolStripMenuItem
+            // 
+            this.mojeZápasyToolStripMenuItem.Name = "mojeZápasyToolStripMenuItem";
+            this.mojeZápasyToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.mojeZápasyToolStripMenuItem.Text = "Moje zápasy";
+            this.mojeZápasyToolStripMenuItem.Click += new System.EventHandler(this.mojeZápasyToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -80,6 +107,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem zapasyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mojProfilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pridaťZápasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vyhodnotiťZápasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mojeZápasyToolStripMenuItem;
     }
 }
 

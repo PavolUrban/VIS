@@ -17,7 +17,7 @@ namespace URB0175.Forms
 {
     public partial class BookmakerProfil : Form
     {
-        int id = 2;
+   
         public BookmakerProfil()
         {
             InitializeComponent();
@@ -81,7 +81,10 @@ namespace URB0175.Forms
             }
         }
 
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 
