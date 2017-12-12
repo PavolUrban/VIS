@@ -44,7 +44,9 @@ namespace Connective.TablesGateway
                                               "FROM(SELECT avg(z1.kurz_domaci) as priemKurzDomaci FROM Zapasy z1) AS tabulka, Zapasy z2 " +
                                               "WHERE z2.kurz_domaci > tabulka.priemKurzDomaci";
 
+        public String SQL_KurzovaPonuka = "Select id_zapasu, domaci_tim,hostujuci_tim, kurz_domaci,kurz_remiza,kurz_hostia FROM Zapasy where vysledok is null";
 
+        public String SQL_SELECT_Unfinished = "Select * from zapasy where vysledok is null";
         public String SQL_SELECT_MOJ2 = "SELECT z2.id_zapasu, z2.domaci_tim, z2.hostujuci_tim, z2.kurz_domaci, tabulka.priemKurzDomaci, z2.id_sportu " +
 "FROM(SELECT avg(z1.kurz_domaci) as priemKurzDomaci, z1.id_sportu FROM Zapasy z1 GROUP BY z1.id_sportu) " +
 "AS tabulka, Zapasy z2 JOIN Sport s on s.id_sportu = z2.id_sportu WHERE z2.kurz_domaci>tabulka.priemKurzDomaci AND z2.id_sportu = tabulka.id_sportu AND s.nazov_sportu = @nazovSportu";
@@ -122,6 +124,58 @@ namespace Connective.TablesGateway
 
 
         }
+
+
+
+        public Collection<T> SelectAkteri()
+        {
+            Database db = new Database();
+
+            db.Connect();
+
+            SqlCommand command = db.CreateCommand(SQL_SELECT_Unfinished);
+            SqlDataReader reader = db.Select(command);
+
+
+
+            Collection<T> zapasy = Read(reader);
+
+            db.Close();
+
+
+            return zapasy;
+
+
+
+        }
+
+
+
+
+
+        public Collection<ZapasyNaPonuku> SelectPonuka()
+        {
+            Database db = new Database();
+
+            db.Connect();
+
+            SqlCommand command = db.CreateCommand(SQL_KurzovaPonuka);
+            SqlDataReader reader = db.Select(command);
+
+
+
+            Collection<ZapasyNaPonuku> zapasy = ReaderKurzovaPonuka(reader);
+
+            db.Close();
+
+
+            return zapasy;
+
+
+
+        }
+
+
 
 
 
@@ -382,7 +436,10 @@ namespace Connective.TablesGateway
                 zapas.kurz_hostia = reader.GetDouble(++i);
                 zapas.id_sportu = reader.GetInt32(++i);
                 zapas.id_bookmakera = reader.GetInt32(++i);
-
+                if (!reader.IsDBNull(++i))
+                {
+                    zapas.vysledok = reader.GetInt32(i);
+                }
 
                 zapasy.Add((T)zapas);
 
@@ -414,6 +471,39 @@ namespace Connective.TablesGateway
             }
             return pos;
         }
+
+
+
+
+        private Collection<ZapasyNaPonuku> ReaderKurzovaPonuka(SqlDataReader reader)
+        {
+            Collection<ZapasyNaPonuku> pos = new Collection<ZapasyNaPonuku>();
+
+            while (reader.Read())
+            {
+                int i = -1;
+                ZapasyNaPonuku po = new ZapasyNaPonuku();
+                po.ID_Zapasu = reader.GetInt32(++i);
+                po.domaci = reader.GetString(++i);
+                po.hostia = reader.GetString(++i);
+                po.kurzD = reader.GetDouble(++i);
+               
+                if (!reader.IsDBNull(++i))
+                {
+                    po.kurzR = reader.GetDouble(i);
+                }
+
+                po.kurzH = reader.GetDouble(++i);
+
+
+
+                pos.Add(po);
+
+            }
+            return pos;
+        }
+
+
 
 
         private Collection<PomocnyObjekt2> Reader2(SqlDataReader reader)
@@ -608,4 +698,15 @@ public class PomocnyObjekt5
     public string domaci { get; set; }
     public string hostia { get; set; }
    
+}
+
+
+public class ZapasyNaPonuku
+{
+    public int ID_Zapasu { get; set; }
+    public string domaci { get; set; }
+    public string hostia { get; set; }
+    public double kurzD { get; set;}
+    public double? kurzR { get; set; }
+    public double kurzH { get; set; }
 }

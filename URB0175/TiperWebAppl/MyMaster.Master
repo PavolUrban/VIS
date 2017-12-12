@@ -29,8 +29,8 @@
                     <li>
                       <asp:HyperLink id="HyperLink2" 
                       class="menuItem"
-                      NavigateUrl="ChangeProfile.aspx"
-                      Text="Change Profile"
+                      NavigateUrl="VytvoritTiket.aspx"
+                      Text="Vytvoriť tiket"
                       runat="server"/> 
                     </li>
                     <li>

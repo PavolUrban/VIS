@@ -18,7 +18,8 @@ namespace Connective.Tables
         public int id_sportu { get; set; }
         public int id_bookmakera { get; set; }
         public int? vysledok { get; set; }
-
+        
         public string akteriZapasu { get { return this.RecordId + ". " + this.domaci_tim + " vs. " + this.hostujuci_tim; } }
+        
     }
 }

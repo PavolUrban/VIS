@@ -113,6 +113,7 @@
     <Content Include="Ponuka.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="VytvoritTiket.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,13 @@
       <DependentUpon>Ponuka.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VytvoritTiket.aspx.cs">
+      <DependentUpon>VytvoritTiket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VytvoritTiket.aspx.designer.cs">
+      <DependentUpon>VytvoritTiket.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Connective\Connective.csproj">

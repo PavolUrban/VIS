@@ -4,6 +4,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <asp:GridView  ID="kurzovaPonuka" CellPadding="10" OnRowDataBound="KurzovaPonuka_RowDataBound" runat="server" OnSelectedIndexChanged="kurzovaPonuka_SelectedIndexChanged"></asp:GridView>
+   <asp:GridView ID="kurzovaPonuka" CellPadding="10" OnRowDataBound="KurzovaPonuka_RowDataBound" runat="server" OnSelectedIndexChanged="kurzovaPonuka_SelectedIndexChanged">
+     
+   </asp:GridView>
+    
 
 </asp:Content>

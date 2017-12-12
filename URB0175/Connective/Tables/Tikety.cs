@@ -16,5 +16,25 @@ namespace Connective.Tables
         public double vklad { get; set; }
         public double? celkova_vyhra { get; set; }
         public bool? uspesnost_tiketu { get; set; }
+
+
+        public Tikety()
+        {
+
+        }
+
+        public Tikety(string kodT, int id, double kurz, double vklad, double vyhra, bool? uspesnost)
+        {
+            this.kod_tiketu = kodT;
+            this.id_tipera = id;
+            this.celkovy_kurz = kurz;
+            this.vklad = vklad;
+            this.celkova_vyhra = vyhra;
+            this.uspesnost_tiketu = uspesnost;
+        }
+
+
     }
+
+   
 }
