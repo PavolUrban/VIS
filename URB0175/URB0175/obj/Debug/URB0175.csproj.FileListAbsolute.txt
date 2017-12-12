@@ -14,3 +14,5 @@ C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.BookmakerProfil.res
 C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.EditProfile.resources
 C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.AddMatch.resources
 C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.BookmakerMatches.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.AddResult.resources
+C:\Skola\VIS\PROJEKT\URB0175\URB0175\obj\Debug\URB0175.Forms.SetReesult.resources

@@ -50,5 +50,11 @@ namespace URB0175
         public void SetCurrentBookmaker(Bookmaker obj) {
             bookmaker = obj;
         }
+
+
+        public void LogOut()
+        {
+            bookmaker = null;
+        }
     }
 }

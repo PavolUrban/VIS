@@ -81,9 +81,19 @@
     <Compile Include="Tables\TiperoveBonusy.cs" />
     <Compile Include="Tables\Zapasy.cs" />
     <Compile Include="Tables\ZapasyNaTikete.cs" />
+    <Compile Include="XMLGateway\BonusXMLGateway.cs" />
+    <Compile Include="XMLGateway\BookmakerXMLGateway.cs" />
+    <Compile Include="XMLGateway\Paths.cs" />
+    <Compile Include="XMLGateway\SportXMLGateway.cs" />
+    <Compile Include="XMLGateway\TiketyXMLGateway.cs" />
+    <Compile Include="XMLGateway\TiperoveBonusyXMLGateway.cs" />
+    <Compile Include="XMLGateway\TiperXMLGateway.cs" />
+    <Compile Include="XMLGateway\ZapasyNaTiketeXMLGateway.cs" />
+    <Compile Include="XMLGateway\ZapasyXMLGateway.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="XMLGateway\TiperXMLGateway.cs~RF5d5fadc.TMP" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

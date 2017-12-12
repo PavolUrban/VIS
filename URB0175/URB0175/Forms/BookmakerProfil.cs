@@ -59,6 +59,7 @@ namespace URB0175.Forms
             
             EditProfile ep = new EditProfile();
             ep.Show();
+            this.Close();
             
         }
 

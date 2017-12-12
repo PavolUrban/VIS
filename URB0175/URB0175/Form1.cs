@@ -44,5 +44,18 @@ namespace URB0175
             BookmakerMatches bm = new BookmakerMatches();
             bm.Show();
         }
+
+        private void vyhodnotiťZápasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddResult ar = new AddResult();
+            ar.Show();
+        }
+
+        private void odhlásiťToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Autorization.Instance.LogOut();
+            Login l = new Login();
+            l.ShowDialog();
+        }
     }
 }

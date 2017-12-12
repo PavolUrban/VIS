@@ -72,7 +72,9 @@ namespace URB0175.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //zapasyna vyhodnotenie
+            this.Close();
+            AddResult ar = new AddResult();
+            ar.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)

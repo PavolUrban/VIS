@@ -1,0 +1,3 @@
+Klikanie na cely riadok a to ma presmeruje na vyhodnotenie zapasu kde zadam vysledok.
+
+LOGOUT??

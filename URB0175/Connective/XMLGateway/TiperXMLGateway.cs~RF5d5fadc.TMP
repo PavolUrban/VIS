@@ -1,0 +1,29 @@
+﻿using Connective.Abstract.Interface;
+using Connective.Tables;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Connective.XMLGateway
+{
+    public class TiperXMLGateway<T> : TiperGatewayInterface<T>
+        where T : Tiper
+    {
+        private static TiperXMLGateway<Tiper> instance;
+        private TiperXMLGateway() { }
+
+        public static TiperXMLGateway<Tiper> Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new TiperXMLGateway<Tiper>();
+                }
+                return instance;
+            }
+        }
+    }
+}

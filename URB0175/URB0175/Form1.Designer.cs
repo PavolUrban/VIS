@@ -30,10 +30,11 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.zapasyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mojProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pridaťZápasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vyhodnotiťZápasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mojeZápasyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mojProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.odhlásiťToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +42,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.zapasyToolStripMenuItem,
-            this.mojProfilToolStripMenuItem});
+            this.mojProfilToolStripMenuItem,
+            this.odhlásiťToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(284, 24);
@@ -59,13 +61,6 @@
             this.zapasyToolStripMenuItem.Text = "Zápasy";
             this.zapasyToolStripMenuItem.Click += new System.EventHandler(this.zapasyToolStripMenuItem_Click);
             // 
-            // mojProfilToolStripMenuItem
-            // 
-            this.mojProfilToolStripMenuItem.Name = "mojProfilToolStripMenuItem";
-            this.mojProfilToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.mojProfilToolStripMenuItem.Text = "Moj profil";
-            this.mojProfilToolStripMenuItem.Click += new System.EventHandler(this.mojProfilToolStripMenuItem_Click);
-            // 
             // pridaťZápasToolStripMenuItem
             // 
             this.pridaťZápasToolStripMenuItem.Name = "pridaťZápasToolStripMenuItem";
@@ -78,6 +73,7 @@
             this.vyhodnotiťZápasToolStripMenuItem.Name = "vyhodnotiťZápasToolStripMenuItem";
             this.vyhodnotiťZápasToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.vyhodnotiťZápasToolStripMenuItem.Text = "Vyhodnotiť zápas";
+            this.vyhodnotiťZápasToolStripMenuItem.Click += new System.EventHandler(this.vyhodnotiťZápasToolStripMenuItem_Click);
             // 
             // mojeZápasyToolStripMenuItem
             // 
@@ -85,6 +81,20 @@
             this.mojeZápasyToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.mojeZápasyToolStripMenuItem.Text = "Moje zápasy";
             this.mojeZápasyToolStripMenuItem.Click += new System.EventHandler(this.mojeZápasyToolStripMenuItem_Click);
+            // 
+            // mojProfilToolStripMenuItem
+            // 
+            this.mojProfilToolStripMenuItem.Name = "mojProfilToolStripMenuItem";
+            this.mojProfilToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.mojProfilToolStripMenuItem.Text = "Moj profil";
+            this.mojProfilToolStripMenuItem.Click += new System.EventHandler(this.mojProfilToolStripMenuItem_Click);
+            // 
+            // odhlásiťToolStripMenuItem
+            // 
+            this.odhlásiťToolStripMenuItem.Name = "odhlásiťToolStripMenuItem";
+            this.odhlásiťToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.odhlásiťToolStripMenuItem.Text = "Odhlásiť";
+            this.odhlásiťToolStripMenuItem.Click += new System.EventHandler(this.odhlásiťToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -110,6 +120,7 @@
         private System.Windows.Forms.ToolStripMenuItem pridaťZápasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vyhodnotiťZápasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mojeZápasyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem odhlásiťToolStripMenuItem;
     }
 }
 
