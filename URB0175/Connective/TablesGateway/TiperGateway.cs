@@ -40,6 +40,9 @@ namespace Connective.TablesGateway
         public String SQL_UPDATE = "UPDATE \"Tiper\" SET meno=@meno, priezvisko=@priezvisko, datum_narodenia=@datumNar, email=@email, datum_registracie = @datumReg, pohlavie=@pohlavie, stav_uctu=@stavUctu, heslo=@heslo WHERE id_tipera=@id";
 
         public String SQL_SELECTZNT = "SELECT * FROM ZapasyNaTikete znt join tikety t ON t.id_tiketu = znt.Tikety_id_Tiketu join tiper tp On tp.id_tipera = t.id_tipera AND t.id_tipera = @idTipera";
+        public String SQL_CHECK_PASSWORD = "SELECT DISTINCT* FROM Tiper WHERE email=@email AND heslo=@heslo";
+
+
 
         public int Insert(T t)
         {
@@ -185,6 +188,11 @@ namespace Connective.TablesGateway
                     tiper.stav_uctu = reader.GetDouble(i);
                 }
 
+                if (!reader.IsDBNull(++i))
+                {
+                    tiper.heslo= reader.GetString(i);
+                }
+
                 tiperi.Add((T)tiper);
 
             }
@@ -238,6 +246,26 @@ namespace Connective.TablesGateway
                 db.Close();
             
 
+        }
+
+
+        public bool CheckPassword(T tiper)
+        {
+            Database db = new Database();
+            db.Connect();
+            SqlCommand command = db.CreateCommand(SQL_CHECK_PASSWORD);
+            PrepareCommand(command, tiper);
+
+            SqlDataReader reader = db.Select(command);
+
+            Collection<T> tiperi = Read(reader);
+            db.Close();
+
+            if (tiperi.Count > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
 

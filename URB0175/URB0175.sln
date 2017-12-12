@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URB0175", "URB0175\URB0175.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connective", "Connective\Connective.csproj", "{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiperWebAppl", "TiperWebAppl\TiperWebAppl.csproj", "{3622543B-3CA2-4952-B0CC-0065D60EB1A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55B3AF47-A6AA-46F5-B1B7-5C3B326E2EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3622543B-3CA2-4952-B0CC-0065D60EB1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3622543B-3CA2-4952-B0CC-0065D60EB1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3622543B-3CA2-4952-B0CC-0065D60EB1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3622543B-3CA2-4952-B0CC-0065D60EB1A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

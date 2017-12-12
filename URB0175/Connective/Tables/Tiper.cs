@@ -18,5 +18,27 @@ namespace Connective.Tables
         public string pohlavie { get; set; }
         public double? stav_uctu { get; set; }
         public string heslo { get; set; }
+
+
+        public Tiper()
+        {
+
+        }
+
+
+        public Tiper(int RecordId, string meno, string priezvisko, DateTime narod, string email, DateTime registracia, string pohlavie, double stavUctu, string heslo)
+        {
+            this.RecordId = RecordId;
+            this.meno = meno;
+            this.priezvisko = priezvisko;
+            this.datum_narodenia = narod;
+            this.email = email;
+            this.datum_registracie = registracia;
+            this.pohlavie = pohlavie;
+            this.stav_uctu = stavUctu;
+            this.heslo = heslo;
+
+        }
+
     }
 }

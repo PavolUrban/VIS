@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MyMaster.master.cs" Inherits="TiperWebAppl.MyMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+     <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    
+
+    <form id="form1" runat="server">
+        <div class="customHeader materialCard">
+            <div id="navHeader">
+                Fitness APP - Client
+            </div>
+            <div class="menuItems">
+                <ul>
+                    <li>
+                      <asp:HyperLink id="HyperLink1" 
+                      class="menuItem"
+                      NavigateUrl="TrainerRate.aspx"
+                      Text="Rate Trainer"
+                      runat="server"/> 
+                    </li>
+                    <li>
+                      <asp:HyperLink id="HyperLink2" 
+                      class="menuItem"
+                      NavigateUrl="ChangeProfile.aspx"
+                      Text="Change Profile"
+                      runat="server"/> 
+                    </li>
+                    <li>
+                      <asp:HyperLink id="HyperLink3" 
+                      class="menuItem"
+                      NavigateUrl="Ponuka.aspx"
+                      Text="Kurzová ponuka"
+                      runat="server"/> 
+                    </li>
+                    <li>
+                      <asp:HyperLink id="logoutButton" class="none"
+                      NavigateUrl="Login.aspx"
+                      Text="Logout"
+                      runat="server"/> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    
+    </form>
+</body>
+</html>
