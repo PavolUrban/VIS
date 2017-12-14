@@ -112,14 +112,29 @@ namespace TiperWebAppl
             ZapasyNaTiketeFactory zntF = new ZapasyNaTiketeFactory();
             ZapasyNaTiketeGateway<ZapasyNaTikete> zntG = (ZapasyNaTiketeGateway<ZapasyNaTikete>)zntF.GetZapasyNaTikete();
 
-            zntG.Insert(znt1);
-            zntG.Insert(znt2);
-            zntG.Insert(znt3);
+            if (znt1.Zapasy_id_zapasu != znt2.Zapasy_id_zapasu && znt2.Zapasy_id_zapasu != znt3.Zapasy_id_zapasu && znt1.Zapasy_id_zapasu != znt3.Zapasy_id_zapasu)
+            {
+                zntG.Insert(znt1);
+                zntG.Insert(znt2);
+                zntG.Insert(znt3);
+
+                celkovyKurz = celkovyKurz * getKurz(getidZapasu(DropDownList1), DropDownList2) * getKurz(getidZapasu(DropDownList3), DropDownList4) * getKurz(getidZapasu(DropDownList5), DropDownList6);
+
+                setTiketCelkovyKurz();
+            }
+
+            else
+            {
+                ErrorTrap("Nemozete pridavat tip na rovnake zapasy");
+                TiketyFactory tikF = new TiketyFactory();
+                TiketyGateway<Tikety> tikG = (TiketyGateway<Tikety>)tikF.GetTikety();
+                tikG.Delete(getIdTiketu());
+
+            }
+                
 
             
-            celkovyKurz = celkovyKurz * getKurz(getidZapasu(DropDownList1),DropDownList2) * getKurz(getidZapasu(DropDownList3), DropDownList4)* getKurz(getidZapasu(DropDownList5), DropDownList6);
-           
-            setTiketCelkovyKurz();
+          
             
 
            

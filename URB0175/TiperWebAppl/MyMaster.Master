@@ -15,15 +15,15 @@
     <form id="form1" runat="server">
         <div class="customHeader materialCard">
             <div id="navHeader">
-                Fitness APP - Client
+               Urban Bet
             </div>
             <div class="menuItems">
                 <ul>
                     <li>
                       <asp:HyperLink id="HyperLink1" 
                       class="menuItem"
-                      NavigateUrl="TrainerRate.aspx"
-                      Text="Rate Trainer"
+                      NavigateUrl="TiperoveTikety.aspx"
+                      Text="Moje tikety"
                       runat="server"/> 
                     </li>
                     <li>

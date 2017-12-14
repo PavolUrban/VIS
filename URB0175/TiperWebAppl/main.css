@@ -30,7 +30,8 @@ form{
 }
 
 .customHeader{
-    height: 50px;
+    height: 90px;
+    margin-bottom: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -66,8 +67,9 @@ a{
     font-weight: bold;
 }
 .menuItems{
-    position: absolute;
+   
     right: 100px;
+    margin-top:10px;
 }
 #logoutButton{
     background: white;
@@ -77,6 +79,30 @@ a{
     cursor: pointer;
 }
 
+.bodyWrap {
+
+width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:500px;
+}
+
+.leftSide{
+    width:70%;
+    float:left;
+    margin-left:100px 
+   
+
+}
+
+
+.rightSide{
+    width:30%;
+    font-size: 40px;
+    float:right;
+     
+}
 
 .loginWrap{
     display: flex;

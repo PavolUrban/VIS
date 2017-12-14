@@ -113,6 +113,7 @@
     <Content Include="Ponuka.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="TiperoveTikety.aspx" />
     <Content Include="VytvoritTiket.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -147,6 +148,13 @@
       <DependentUpon>Ponuka.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TiperoveTikety.aspx.cs">
+      <DependentUpon>TiperoveTikety.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TiperoveTikety.aspx.designer.cs">
+      <DependentUpon>TiperoveTikety.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VytvoritTiket.aspx.cs">
       <DependentUpon>VytvoritTiket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

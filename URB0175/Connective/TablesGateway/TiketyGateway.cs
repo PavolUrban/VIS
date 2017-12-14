@@ -40,7 +40,7 @@ namespace Connective.TablesGateway
         public String SQL_INSERT = "INSERT INTO \"Tikety\" VALUES (@kod, @idTipera, @celkovyKurz, @vklad, @celkovaVyhra, @uspesnostTiketu)";
         public String SQL_DELETE_ID = "DELETE FROM \"Tikety\" WHERE id_tiketu=@id";
         public String SQL_UPDATE = "UPDATE \"Tikety\" SET kod_tiketu=@kod, id_tipera=@idTipera, celkovy_kurz=@celkovyKurz, vklad=@vklad, celkova_vyhra=@celkovaVyhra, uspesnost_tiketu=@uspesnostTiketu WHERE id_tiketu=@id";
-
+        public String SQL_SELECT_TIPEROVEZAPASY = "select * from tikety where id_tipera = @id_tipera order by id_tiketu";
 
         public  int Insert(T t)
         {
@@ -96,6 +96,25 @@ namespace Connective.TablesGateway
             return tikety;
         }
 
+
+        public Collection<T> SelectTiperove(int idTipera)
+        {
+            Database db = new Database();
+
+            db.Connect();
+
+            SqlCommand command = db.CreateCommand(SQL_SELECT_TIPEROVEZAPASY);
+            command.Parameters.AddWithValue("@id_tipera", idTipera);
+            SqlDataReader reader = db.Select(command);
+
+            Collection<T> tikety = Read(reader);
+
+
+            db.Close();
+
+
+            return tikety;
+        }
 
 
         public Collection<T> SelectTOP1()
