@@ -14,19 +14,27 @@ namespace TiperWebAppl
     public partial class TiperoveTikety : System.Web.UI.Page
     {
         public object DataGridViewElementStates { get; private set; }
-        
+        string[] uspesnost = new string[] { "všetky","nevyhodnotené", "výherné", "nevýherné" };
+        int idTipera = AutorizaciaTiper.Instance.getIdTiper();//prihlaseny tiper
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             TiketyFactory tF = new TiketyFactory();
             TiketyGateway<Tikety> tg = (TiketyGateway<Tikety>)tF.GetTikety();
 
-            int idTipera = AutorizaciaTiper.Instance.getIdTiper();
-
-            Collection<Tikety> tikety = tg.SelectTiperove(idTipera);
+            Collection<Tikety> tikety = tg.SelectTiperove(idTipera,"všetky");
 
             MojTikety.DataSource = tikety;
             MojTikety.DataBind();
+
+            if (!IsPostBack)
+            {
+
+                DropDownList1.DataSource = uspesnost;
+                DropDownList1.DataBind();
+            }
         }
 
         protected void MojTikety_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,6 +55,34 @@ namespace TiperWebAppl
                 e.Row.Cells[5].Text = "Celková výhra";
                 e.Row.Cells[6].Text = "Úspešnosť";
 
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            TiketyFactory tF = new TiketyFactory();
+            TiketyGateway<Tikety> tg = (TiketyGateway<Tikety>)tF.GetTikety();
+
+            if (DropDownList1.Text == "výherné")
+            {
+                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "vyherne");
+                MojTikety.DataSource = tikety;
+                MojTikety.DataBind();
+            }
+
+
+            else if (DropDownList1.Text == "nevýherné")
+            {
+                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyherne");
+                MojTikety.DataSource = tikety;
+                MojTikety.DataBind();
+            }
+
+            else if(DropDownList1.Text == "nevyhodnotené")
+            {
+                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyhodnotene");
+                MojTikety.DataSource = tikety;
+                MojTikety.DataBind();
             }
         }
     }

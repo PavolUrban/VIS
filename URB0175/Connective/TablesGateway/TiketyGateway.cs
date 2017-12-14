@@ -41,6 +41,10 @@ namespace Connective.TablesGateway
         public String SQL_DELETE_ID = "DELETE FROM \"Tikety\" WHERE id_tiketu=@id";
         public String SQL_UPDATE = "UPDATE \"Tikety\" SET kod_tiketu=@kod, id_tipera=@idTipera, celkovy_kurz=@celkovyKurz, vklad=@vklad, celkova_vyhra=@celkovaVyhra, uspesnost_tiketu=@uspesnostTiketu WHERE id_tiketu=@id";
         public String SQL_SELECT_TIPEROVEZAPASY = "select * from tikety where id_tipera = @id_tipera order by id_tiketu";
+        public String SQL_SELECT_TIPEROVEUspesneZAPASY = "select * from tikety where id_tipera = @id_tipera AND uspesnost_tiketu=1 order by id_tiketu";
+        public String SQL_SELECT_TIPEROVENeuspesneZAPASY = "select * from tikety where id_tipera = @id_tipera AND uspesnost_tiketu=0 order by id_tiketu";
+        public String SQL_SELECT_TIPEROVENevyhodnoteneZAPASY = "select * from tikety where id_tipera = @id_tipera AND uspesnost_tiketu IS NULL order by id_tiketu";
+
 
         public  int Insert(T t)
         {
@@ -97,23 +101,64 @@ namespace Connective.TablesGateway
         }
 
 
-        public Collection<T> SelectTiperove(int idTipera)
+        public Collection<T> SelectTiperove(int idTipera, string uspesnost)
         {
             Database db = new Database();
 
             db.Connect();
 
-            SqlCommand command = db.CreateCommand(SQL_SELECT_TIPEROVEZAPASY);
-            command.Parameters.AddWithValue("@id_tipera", idTipera);
-            SqlDataReader reader = db.Select(command);
 
-            Collection<T> tikety = Read(reader);
+            if (uspesnost == "vyherne")
+            {
+                SqlCommand command = db.CreateCommand(SQL_SELECT_TIPEROVEUspesneZAPASY);
+                command.Parameters.AddWithValue("@id_tipera", idTipera);
+                SqlDataReader reader = db.Select(command);
 
+                Collection<T> tikety = Read(reader);
+                db.Close();
 
-            db.Close();
+                return tikety;
+            }
 
+            else if (uspesnost == "nevyherne")
+            {
 
-            return tikety;
+                SqlCommand command = db.CreateCommand(SQL_SELECT_TIPEROVENeuspesneZAPASY);
+                command.Parameters.AddWithValue("@id_tipera", idTipera);
+                SqlDataReader reader = db.Select(command);
+
+                Collection<T> tikety = Read(reader);
+                db.Close();
+
+                return tikety;
+            }
+
+            else if (uspesnost == "nevyhodnotene")
+            {
+                SqlCommand command = db.CreateCommand(SQL_SELECT_TIPEROVENevyhodnoteneZAPASY);
+                command.Parameters.AddWithValue("@id_tipera", idTipera);
+                SqlDataReader reader = db.Select(command);
+
+                Collection<T> tikety = Read(reader);
+                db.Close();
+
+                return tikety;
+            }
+
+            else
+            {
+                //tu sa returnu vsetky
+                SqlCommand command = db.CreateCommand(SQL_SELECT_TIPEROVEZAPASY);
+                command.Parameters.AddWithValue("@id_tipera", idTipera);
+                SqlDataReader reader = db.Select(command);
+
+                Collection<T> tikety = Read(reader);
+                db.Close();
+
+                return tikety;
+            }
+                
+           
         }
 
 
