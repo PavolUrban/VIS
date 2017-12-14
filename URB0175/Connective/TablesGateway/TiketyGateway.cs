@@ -38,8 +38,8 @@ namespace Connective.TablesGateway
         public String SQL_SELECT_ID = "SELECT * FROM \"Tikety\" WHERE id_tiketu=@id";
         public String SQL_SELECT_TOP1 = "SELECT top 1 * FROM Tikety order by id_tiketu desc";
         public String SQL_INSERT = "INSERT INTO \"Tikety\" VALUES (@kod, @idTipera, @celkovyKurz, @vklad, @celkovaVyhra, @uspesnostTiketu)";
-        public String SQL_DELETE_ID = "DELETE FROM \"Tiket\" WHERE id_tiketu=@id";
-        public String SQL_UPDATE = "UPDATE \"Tiket\" SET kod_tiketu=@kod, id_tipera=@idTipera, celkovy_kurz=@celkovyKurz, vklad=@vklad, celkova_vyhra=@celkovaVyhra, uspesnost_tiketu=@uspesnostTiketu WHERE id_tiketu=@id";
+        public String SQL_DELETE_ID = "DELETE FROM \"Tikety\" WHERE id_tiketu=@id";
+        public String SQL_UPDATE = "UPDATE \"Tikety\" SET kod_tiketu=@kod, id_tipera=@idTipera, celkovy_kurz=@celkovyKurz, vklad=@vklad, celkova_vyhra=@celkovaVyhra, uspesnost_tiketu=@uspesnostTiketu WHERE id_tiketu=@id";
 
 
         public  int Insert(T t)

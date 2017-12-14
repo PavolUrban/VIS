@@ -47,6 +47,13 @@ namespace Connective.TablesGateway
         public String SQL_KurzovaPonuka = "Select id_zapasu, domaci_tim,hostujuci_tim, kurz_domaci,kurz_remiza,kurz_hostia FROM Zapasy where vysledok is null";
 
         public String SQL_SELECT_Unfinished = "Select * from zapasy where vysledok is null";
+
+
+        public String SQL_SELECT_kurzDomaci = "select kurz_domaci from Zapasy where id_zapasu = @id_zapasu";
+        public String SQL_SELECT_kurzRemiza = "select kurz_remiza from Zapasy where id_zapasu = @id_zapasu";
+        public String SQL_SELECT_kurzHostia = "select kurz_hostia from Zapasy where id_zapasu = @id_zapasu";
+
+
         public String SQL_SELECT_MOJ2 = "SELECT z2.id_zapasu, z2.domaci_tim, z2.hostujuci_tim, z2.kurz_domaci, tabulka.priemKurzDomaci, z2.id_sportu " +
 "FROM(SELECT avg(z1.kurz_domaci) as priemKurzDomaci, z1.id_sportu FROM Zapasy z1 GROUP BY z1.id_sportu) " +
 "AS tabulka, Zapasy z2 JOIN Sport s on s.id_sportu = z2.id_sportu WHERE z2.kurz_domaci>tabulka.priemKurzDomaci AND z2.id_sportu = tabulka.id_sportu AND s.nazov_sportu = @nazovSportu";
@@ -337,7 +344,44 @@ namespace Connective.TablesGateway
         }
 
 
+
         
+        public double KurzZapasu(int idZapasu, int tip)
+        {
+            Database db = new Database();
+            db.Connect();
+            double number = 0.0;
+
+            if (tip == 1)
+            {
+                SqlCommand command = db.CreateCommand(SQL_SELECT_kurzDomaci);
+                command.Parameters.AddWithValue("@id_zapasu", idZapasu);
+                SqlDataReader reader = db.Select(command);
+                number = KurzZapasuReader(reader);
+            }
+
+            else if (tip == 0)
+            {
+                SqlCommand command = db.CreateCommand(SQL_SELECT_kurzRemiza);
+                command.Parameters.AddWithValue("@id_zapasu", idZapasu);
+                SqlDataReader reader = db.Select(command);
+                number = KurzZapasuReader(reader);
+            }
+
+            else
+            {
+                SqlCommand command = db.CreateCommand(SQL_SELECT_kurzHostia);
+                command.Parameters.AddWithValue("@id_zapasu", idZapasu);
+                SqlDataReader reader = db.Select(command);
+                number = KurzZapasuReader(reader);
+            }
+           
+            db.Close();
+            return number;
+        }
+
+
+
 
 
 
@@ -620,6 +664,10 @@ namespace Connective.TablesGateway
 
 
 
+     
+
+
+
 
 
         private int NumberOfUnfinishedRead(SqlDataReader reader)
@@ -638,7 +686,23 @@ namespace Connective.TablesGateway
 
 
 
-        
+        private double KurzZapasuReader(SqlDataReader reader)
+        {
+            double result = 0;
+
+            while (reader.Read())
+            {
+
+                int i = -1;
+                result = reader.GetDouble(++i);
+
+            }
+            return result;
+        }
+
+
+
+
 
 
 
@@ -709,4 +773,10 @@ public class ZapasyNaPonuku
     public double kurzD { get; set;}
     public double? kurzR { get; set; }
     public double kurzH { get; set; }
+}
+
+
+public class KurzZapasu
+{
+    public double kurzZapasu { get; set; }
 }
