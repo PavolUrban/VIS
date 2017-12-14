@@ -114,6 +114,7 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="TiperoveTikety.aspx" />
+    <Content Include="Vysledky.aspx" />
     <Content Include="VytvoritTiket.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -154,6 +155,13 @@
     </Compile>
     <Compile Include="TiperoveTikety.aspx.designer.cs">
       <DependentUpon>TiperoveTikety.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vysledky.aspx.cs">
+      <DependentUpon>Vysledky.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vysledky.aspx.designer.cs">
+      <DependentUpon>Vysledky.aspx</DependentUpon>
     </Compile>
     <Compile Include="VytvoritTiket.aspx.cs">
       <DependentUpon>VytvoritTiket.aspx</DependentUpon>

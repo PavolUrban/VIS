@@ -45,6 +45,7 @@ namespace Connective.TablesGateway
                                               "WHERE z2.kurz_domaci > tabulka.priemKurzDomaci";
 
         public String SQL_KurzovaPonuka = "Select id_zapasu, domaci_tim,hostujuci_tim, kurz_domaci,kurz_remiza,kurz_hostia FROM Zapasy where vysledok is null";
+        public String SQL_Vysledky= "Select id_zapasu, domaci_tim, hostujuci_tim, kurz_domaci, kurz_remiza, kurz_hostia, vysledok FROM Zapasy where vysledok is not null";
 
         public String SQL_SELECT_Unfinished = "Select * from zapasy where vysledok is null";
 
@@ -172,6 +173,29 @@ namespace Connective.TablesGateway
 
 
             Collection<ZapasyNaPonuku> zapasy = ReaderKurzovaPonuka(reader);
+
+            db.Close();
+
+
+            return zapasy;
+
+
+
+        }
+
+
+        public Collection<VysledkyZapasov> SelectVysledky()
+        {
+            Database db = new Database();
+
+            db.Connect();
+
+            SqlCommand command = db.CreateCommand(SQL_Vysledky);
+            SqlDataReader reader = db.Select(command);
+
+
+
+            Collection<VysledkyZapasov> zapasy = ReaderVysledky(reader);
 
             db.Close();
 
@@ -550,6 +574,42 @@ namespace Connective.TablesGateway
 
 
 
+
+        private Collection<VysledkyZapasov> ReaderVysledky(SqlDataReader reader)
+        {
+            Collection<VysledkyZapasov> pos = new Collection<VysledkyZapasov>();
+
+            while (reader.Read())
+            {
+                int i = -1;
+                VysledkyZapasov po = new VysledkyZapasov();
+                po.ID_Zapasu = reader.GetInt32(++i);
+                po.domaci = reader.GetString(++i);
+                po.hostia = reader.GetString(++i);
+                po.kurzD = reader.GetDouble(++i);
+
+                if (!reader.IsDBNull(++i))
+                {
+                    po.kurzR = reader.GetDouble(i);
+                }
+
+                po.kurzH = reader.GetDouble(++i);
+
+                if (!reader.IsDBNull(++i))
+                {
+                    po.vysledok = reader.GetInt32(i);
+                }
+
+                pos.Add(po);
+
+            }
+            return pos;
+        }
+
+
+
+
+
         private Collection<PomocnyObjekt2> Reader2(SqlDataReader reader)
         {
             Collection<PomocnyObjekt2> pos = new Collection<PomocnyObjekt2>();
@@ -773,6 +833,19 @@ public class ZapasyNaPonuku
     public double kurzD { get; set;}
     public double? kurzR { get; set; }
     public double kurzH { get; set; }
+}
+
+
+
+public class VysledkyZapasov
+{
+    public int ID_Zapasu { get; set; }
+    public string domaci { get; set; }
+    public string hostia { get; set; }
+    public double kurzD { get; set; }
+    public double? kurzR { get; set; }
+    public double kurzH { get; set; }
+    public int? vysledok { get; set; }
 }
 
 

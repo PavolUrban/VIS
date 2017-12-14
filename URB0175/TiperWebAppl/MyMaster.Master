@@ -40,6 +40,13 @@
                       Text="Kurzová ponuka"
                       runat="server"/> 
                     </li>
+                     <li>
+                      <asp:HyperLink id="HyperLink4" 
+                      class="menuItem"
+                      NavigateUrl="Vysledky.aspx"
+                      Text="Výsledky"
+                      runat="server"/> 
+                    </li>
                     <li>
                       <asp:HyperLink id="logoutButton" class="none"
                       NavigateUrl="Login.aspx"
