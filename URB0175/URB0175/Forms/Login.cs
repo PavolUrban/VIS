@@ -64,13 +64,13 @@ namespace URB0175.Forms
                     }
                     else
                     {
-                        MessageBox.Show("You enetered wrong credentials, try again!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Nesprávne prihlasovacie údaje.!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Password is too short!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Heslo je príliš krátke!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             
@@ -80,7 +80,7 @@ namespace URB0175.Forms
            
             else
             {
-                MessageBox.Show("You entered invalid mail address!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chybná emailová adresa!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

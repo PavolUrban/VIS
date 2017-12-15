@@ -43,7 +43,7 @@ namespace URB0175
             }
 
             else
-                return 0; //co tu??
+                return 0; 
             
         } 
         
