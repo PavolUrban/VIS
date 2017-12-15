@@ -1,6 +1,7 @@
 ﻿using Connective.Abstract.Interface;
 using Connective.Tables;
 using Connective.TablesGateway;
+using Connective.XMLGateway;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Connective.Factory
             }
             else
             {
-                return SportGateway<Sport>.Instance;
+                return SportXMLGateway<Sport>.Instance;
                 //return DiscountXMLGateway<DiscountCard>.Instance;
             }
 

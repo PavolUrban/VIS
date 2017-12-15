@@ -37,6 +37,8 @@ namespace Connective.TablesGateway
         public String SQL_DELETE_ID = "DELETE FROM \"ZapasyNaTikete\" WHERE Tikety_id_tiketu=@idTiketu";
         public String SQL_UPDATE = "UPDATE \"ZapasyNaTikete\" SET tip=@tip WHERE Tikety_id_tiketu=@idTiketu AND Zapasy_id_zapasu=@idZapasu";
 
+        public String SQL_SELECT_ZapasyNaTikete = "SELECT Zapasy_id_zapasu,tip FROM ZapasyNaTikete WHERE Tikety_id_tiketu=@idTiketu";
+
 
         public int Insert(T t)
         {
@@ -103,6 +105,27 @@ namespace Connective.TablesGateway
             
             return znts;
         }
+
+
+
+        public Collection<TiperoveZapasyNaTikete> SelectTiperoveZapasy(int idTiketu)
+        {
+            Database db = new Database();
+
+            db.Connect();
+
+            SqlCommand command = db.CreateCommand(SQL_SELECT_ZapasyNaTikete);
+            command.Parameters.AddWithValue("@idTiketu", idTiketu);
+            SqlDataReader reader = db.Select(command);
+
+            Collection<TiperoveZapasyNaTikete> znts = TiperoveZapasyRead(reader);
+
+            db.Close();
+
+            return znts;
+        }
+
+
 
         public T Select(int idTiketu, int idZapasu)
         {
@@ -173,6 +196,26 @@ namespace Connective.TablesGateway
         }
 
 
+
+        private Collection<TiperoveZapasyNaTikete> TiperoveZapasyRead(SqlDataReader reader)
+        {
+            Collection<TiperoveZapasyNaTikete> znts = new Collection<TiperoveZapasyNaTikete>();
+
+            while (reader.Read())
+            {
+                int i = -1;
+                TiperoveZapasyNaTikete znt = new TiperoveZapasyNaTikete();
+                znt.idZapasu = reader.GetInt32(++i);
+                znt.tip = reader.GetInt32(++i); ;
+
+
+                znts.Add(znt);
+
+            }
+            return znts;
+        }
+
+
         public void celkovaVyhra(int idTiketu, int idTipera)
         {
             Database db = new Database();
@@ -203,4 +246,11 @@ namespace Connective.TablesGateway
         }
 
     }
+}
+
+
+public class TiperoveZapasyNaTikete
+{
+    public int idZapasu { get; set; }
+    public int tip { get; set; }
 }

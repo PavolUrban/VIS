@@ -84,6 +84,110 @@ namespace TiperWebAppl
                 MojTikety.DataSource = tikety;
                 MojTikety.DataBind();
             }
+
+            //else vsetky
         }
-    }
+
+
+
+        public void ErrorTrap(string str)
+        {
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "alert" + UniqueID,
+               "alert('" + str + "');", true);
+        }
+
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            TiketyFactory tF = new TiketyFactory();
+            TiketyGateway<Tikety> tg = (TiketyGateway<Tikety>)tF.GetTikety();
+
+            TiperFactory tiperF = new TiperFactory();
+            TiperGateway<Tiper> tiperg = (TiperGateway<Tiper>)tiperF.GetTiper();
+
+            ZapasyNaTiketeFactory zntF = new ZapasyNaTiketeFactory();
+            ZapasyNaTiketeGateway<ZapasyNaTikete> zntG = (ZapasyNaTiketeGateway<ZapasyNaTikete>)zntF.GetZapasyNaTikete();
+
+            ZapasyFactory zapF = new ZapasyFactory();
+            ZapasyGateway<Zapasy> zapG = (ZapasyGateway<Zapasy>)zapF.GetZapasy();
+
+            Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyhodnotene");
+
+            
+            foreach (Tikety t in tikety)
+            {
+                int pocetZapasovNaTikete = 0;
+                int uspesneZapasy = 0;
+                int neuspesneZapasy = 0;
+                int nevyhodnoteneZapasy = 0;
+
+
+                
+                int tiketID = t.RecordId;
+                Collection<TiperoveZapasyNaTikete> tiperoveZapasy = zntG.SelectTiperoveZapasy(tiketID);
+                pocetZapasovNaTikete = tiperoveZapasy.Count;
+                
+            
+
+
+            System.Diagnostics.Debug.WriteLine("Toto je id tiketu: "+tiketID);
+                foreach (TiperoveZapasyNaTikete moje in tiperoveZapasy)
+                {
+                    int tip = moje.tip;
+                    int vysledokZapasu = zapG.VysledokZapasu(moje.idZapasu);
+
+                    if (vysledokZapasu == 100)
+                    {
+                        ++nevyhodnoteneZapasy;
+                        System.Diagnostics.Debug.WriteLine("Pocet nevyhodnotenych " + nevyhodnoteneZapasy);
+                        System.Diagnostics.Debug.WriteLine(moje.idZapasu + " Zapas este nie je vyhodnoteny");
+                    }
+
+                    else
+                    {
+                        if (tip == vysledokZapasu)
+                        {
+                            ++uspesneZapasy;
+                            System.Diagnostics.Debug.WriteLine("Pocet uspesnych " + uspesneZapasy);
+                            System.Diagnostics.Debug.WriteLine(moje.idZapasu + " Tip uspesny");
+                        }
+                        else
+                        {
+                            ++neuspesneZapasy;
+                            System.Diagnostics.Debug.WriteLine("Pocet neuspesnych " + neuspesneZapasy);
+                            System.Diagnostics.Debug.WriteLine(moje.idZapasu + "Tip neuspesny");
+                        }
+                    }
+                }
+
+
+                if (pocetZapasovNaTikete == uspesneZapasy)
+                {
+                    ErrorTrap("Gratulujeme, tiket: " + t.RecordId + " je výherný!");
+                    t.uspesnost_tiketu = true;
+                    tg.Update(t);
+                    double? vyhra = t.celkova_vyhra;
+                    Tiper tipp = tiperg.Select(idTipera);
+                    tipp.stav_uctu = tipp.stav_uctu + vyhra;
+                    tiperg.Update(tipp);
+
+                }
+
+                else if (neuspesneZapasy > 0)
+                {
+                    ErrorTrap("Ľutujeme, tiket: " + t.RecordId + " je nevýherný.");
+                    t.uspesnost_tiketu = false;
+                    tg.Update(t);
+                }
+
+                else
+                {
+                    ErrorTrap("Tiket: " + t.RecordId + " zatiaľ nie je vyhodnotený.");
+                }
+            }
+        }
+
+
+
+        }
 }

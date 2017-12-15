@@ -81,11 +81,7 @@ namespace Connective.XMLGateway
             throw new NotImplementedException();
         }
 
-        public Collection<T> Select()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public int Update(T t)
         {
             throw new NotImplementedException();

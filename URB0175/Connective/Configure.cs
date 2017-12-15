@@ -13,7 +13,7 @@ namespace Connective
 
         public static int BONUSREAD = 0;
         public static int BOOKMAKERREAD = 1;
-        public static int SPORTREAD = 0;
+        public static int SPORTREAD = 1;
         public static int TIKETYREAD = 0;
         public static int TIPERREAD = 0;
         public static int TIPEROVEBONUSYREAD = 0;

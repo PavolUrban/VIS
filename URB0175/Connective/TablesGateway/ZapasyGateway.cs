@@ -55,6 +55,9 @@ namespace Connective.TablesGateway
         public String SQL_SELECT_kurzHostia = "select kurz_hostia from Zapasy where id_zapasu = @id_zapasu";
 
 
+        public String SQL_SELECT_VysledokZapasu = "select vysledok from Zapasy where id_zapasu = @id_zapasu";
+
+
         public String SQL_SELECT_MOJ2 = "SELECT z2.id_zapasu, z2.domaci_tim, z2.hostujuci_tim, z2.kurz_domaci, tabulka.priemKurzDomaci, z2.id_sportu " +
 "FROM(SELECT avg(z1.kurz_domaci) as priemKurzDomaci, z1.id_sportu FROM Zapasy z1 GROUP BY z1.id_sportu) " +
 "AS tabulka, Zapasy z2 JOIN Sport s on s.id_sportu = z2.id_sportu WHERE z2.kurz_domaci>tabulka.priemKurzDomaci AND z2.id_sportu = tabulka.id_sportu AND s.nazov_sportu = @nazovSportu";
@@ -400,6 +403,35 @@ namespace Connective.TablesGateway
                 number = KurzZapasuReader(reader);
             }
            
+            db.Close();
+            return number;
+        }
+
+
+
+
+
+
+
+
+        public int VysledokZapasu(int idZapasu)
+        {
+            Database db = new Database();
+            db.Connect();
+            int number = 100;
+
+
+            SqlCommand command = db.CreateCommand(SQL_SELECT_VysledokZapasu);
+                command.Parameters.AddWithValue("@id_zapasu", idZapasu);
+                SqlDataReader reader = db.Select(command);
+                number = VysledokZapasuReader(reader);
+            
+
+           
+      
+
+            
+
             db.Close();
             return number;
         }
@@ -761,6 +793,24 @@ namespace Connective.TablesGateway
         }
 
 
+        private int VysledokZapasuReader(SqlDataReader reader)
+        {
+            int result = 100;//zapas nevyhodnoteny
+
+            while (reader.Read())
+            {
+
+                int i = -1;
+                if (!reader.IsDBNull(++i))
+                {
+                    result = reader.GetInt32(i);
+                }
+
+            }
+            return result;
+        }
+
+
 
 
 
@@ -852,4 +902,10 @@ public class VysledkyZapasov
 public class KurzZapasu
 {
     public double kurzZapasu { get; set; }
+}
+
+
+public class VysledokZapasu
+{
+    public int? vysledokZapasu { get; set; }
 }
