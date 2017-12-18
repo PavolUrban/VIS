@@ -46,6 +46,8 @@ namespace Connective.TablesGateway
 
         public String SQL_KurzovaPonuka = "Select id_zapasu, domaci_tim,hostujuci_tim, kurz_domaci,kurz_remiza,kurz_hostia FROM Zapasy where vysledok is null";
         public String SQL_Vysledky= "Select id_zapasu, domaci_tim, hostujuci_tim, kurz_domaci, kurz_remiza, kurz_hostia, vysledok FROM Zapasy where vysledok is not null";
+        public String SQL_VysledkyPodlaSportu = "Select id_zapasu, domaci_tim, hostujuci_tim, kurz_domaci, kurz_remiza, kurz_hostia, vysledok FROM Zapasy where id_sportu=@idSportu AND vysledok is not null";
+
 
         public String SQL_SELECT_Unfinished = "Select * from zapasy where vysledok is null";
 
@@ -194,6 +196,32 @@ namespace Connective.TablesGateway
             db.Connect();
 
             SqlCommand command = db.CreateCommand(SQL_Vysledky);
+            SqlDataReader reader = db.Select(command);
+
+
+
+            Collection<VysledkyZapasov> zapasy = ReaderVysledky(reader);
+
+            db.Close();
+
+
+            return zapasy;
+
+
+
+        }
+
+
+
+
+        public Collection<VysledkyZapasov> SelectVysledkyPodlaSportu(int idSportu)
+        {
+            Database db = new Database();
+
+            db.Connect();
+
+            SqlCommand command = db.CreateCommand(SQL_VysledkyPodlaSportu);
+            command.Parameters.AddWithValue("@idSportu", idSportu);
             SqlDataReader reader = db.Select(command);
 
 

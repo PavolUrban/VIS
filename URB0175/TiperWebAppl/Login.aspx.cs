@@ -62,7 +62,7 @@ namespace TiperWebAppl
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('No mail was entered');window.location ='Login.aspx';", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Skúste znova');window.location ='Login.aspx';", true);
                     }
 
                 }

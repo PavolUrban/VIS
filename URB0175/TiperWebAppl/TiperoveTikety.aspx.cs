@@ -58,35 +58,7 @@ namespace TiperWebAppl
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            TiketyFactory tF = new TiketyFactory();
-            TiketyGateway<Tikety> tg = (TiketyGateway<Tikety>)tF.GetTikety();
-
-            if (DropDownList1.Text == "výherné")
-            {
-                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "vyherne");
-                MojTikety.DataSource = tikety;
-                MojTikety.DataBind();
-            }
-
-
-            else if (DropDownList1.Text == "nevýherné")
-            {
-                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyherne");
-                MojTikety.DataSource = tikety;
-                MojTikety.DataBind();
-            }
-
-            else if(DropDownList1.Text == "nevyhodnotené")
-            {
-                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyhodnotene");
-                MojTikety.DataSource = tikety;
-                MojTikety.DataBind();
-            }
-
-            //else vsetky
-        }
+       
 
 
 
@@ -112,8 +84,14 @@ namespace TiperWebAppl
             ZapasyGateway<Zapasy> zapG = (ZapasyGateway<Zapasy>)zapF.GetZapasy();
 
             Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyhodnotene");
+            if (tikety.Count == 0)
+            {
+                ErrorTrap("Nemáte žiadne tikety na vyhodnotenie");
+            }
 
-            
+
+            else
+            { 
             foreach (Tikety t in tikety)
             {
                 int pocetZapasovNaTikete = 0;
@@ -122,15 +100,15 @@ namespace TiperWebAppl
                 int nevyhodnoteneZapasy = 0;
 
 
-                
+
                 int tiketID = t.RecordId;
                 Collection<TiperoveZapasyNaTikete> tiperoveZapasy = zntG.SelectTiperoveZapasy(tiketID);
                 pocetZapasovNaTikete = tiperoveZapasy.Count;
-                
-            
 
 
-            System.Diagnostics.Debug.WriteLine("Toto je id tiketu: "+tiketID);
+
+
+                System.Diagnostics.Debug.WriteLine("Toto je id tiketu: " + tiketID);
                 foreach (TiperoveZapasyNaTikete moje in tiperoveZapasy)
                 {
                     int tip = moje.tip;
@@ -189,5 +167,37 @@ namespace TiperWebAppl
 
 
 
+
         }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TiketyFactory tF = new TiketyFactory();
+            TiketyGateway<Tikety> tg = (TiketyGateway<Tikety>)tF.GetTikety();
+
+            if (DropDownList1.Text == "výherné")
+            {
+                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "vyherne");
+                MojTikety.DataSource = tikety;
+                MojTikety.DataBind();
+            }
+
+
+            else if (DropDownList1.Text == "nevýherné")
+            {
+                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyherne");
+                MojTikety.DataSource = tikety;
+                MojTikety.DataBind();
+            }
+
+            else if (DropDownList1.Text == "nevyhodnotené")
+            {
+                Collection<Tikety> tikety = tg.SelectTiperove(idTipera, "nevyhodnotene");
+                MojTikety.DataSource = tikety;
+                MojTikety.DataBind();
+            }
+
+            //else vsetky
+        }
+    }
 }
